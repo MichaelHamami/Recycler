@@ -2,12 +2,12 @@ package com.hamami.recycler;
 
 public class MyList {
     private String head;
-    private String desc;
+    private String time;
 
     //constructor initializing values
     public MyList(String head, String desc) {
         this.head = head;
-        this.desc = desc;
+        this.time = desc;
     }
 
     //getters
@@ -16,6 +16,6 @@ public class MyList {
     }
 
     public String getDesc() {
-        return desc;
+        return time;
     }
 }

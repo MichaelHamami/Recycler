@@ -1,8 +1,6 @@
 package com.hamami.recycler;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(final CustomAdapter.ViewHolder holder, int position) {
         MyList myList = list.get(position);
         holder.textViewHead.setText(myList.getHead());
-        holder.textViewDesc.setText(myList.getDesc());
+        holder.textTimeSong.setText(myList.getDesc());
 
         holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,14 +81,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textViewHead;
-        public TextView textViewDesc;
+        public TextView textTimeSong;
         public TextView buttonViewOption;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
-            textViewDesc = (TextView) itemView.findViewById(R.id.textTimeSong);
+            textTimeSong = (TextView) itemView.findViewById(R.id.textTimeSong);
             buttonViewOption = (TextView) itemView.findViewById(R.id.textViewOptions);
         }
     }
