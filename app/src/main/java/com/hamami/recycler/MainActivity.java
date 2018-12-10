@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 1; i <= 9; i++) {
             MyList myList = new MyList(
                     "Dummy Heading " + i,
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi molestie nisi dui."
+                    "time" +i+" "
             );
             list.add(myList);
         }

@@ -90,7 +90,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(itemView);
 
             textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
-            textViewDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
+            textViewDesc = (TextView) itemView.findViewById(R.id.textTimeSong);
             buttonViewOption = (TextView) itemView.findViewById(R.id.textViewOptions);
         }
     }
