@@ -1,21 +1,28 @@
 package com.hamami.recycler;
 
+import java.io.File;
+
 public class MyList {
-    private String head;
-    private String time;
+    private File fileSong;
+    private String nameSong;
+    private String SongLength;
 
     //constructor initializing values
-    MyList(String head, String time) {
-        this.head = head;
-        this.time = time;
+    MyList(File fileSong,String nameSong, String SongLength) {
+        this.fileSong = fileSong;
+        this.nameSong = nameSong;
+        this.SongLength = SongLength;
     }
 
     //getters
-    public String getHead() {
-        return head;
+    public String getNameSong() {
+        return nameSong;
     }
 
-    public String getTime() {
-        return time;
+    public String getSongLength() {
+        return SongLength;
+    }
+    public File getFileSong(){
+        return fileSong;
     }
 }

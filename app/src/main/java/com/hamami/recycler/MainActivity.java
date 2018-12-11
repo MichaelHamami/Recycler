@@ -1,6 +1,7 @@
 package com.hamami.recycler;
 
 import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     //recyclerview objects
+    private MediaPlayer mediaPlayer;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //initializing views
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -68,13 +69,14 @@ public class MainActivity extends AppCompatActivity
 //            for this tutorial I am adding some dummy data directly
             for (int i = 0; i < mySongs.size(); i++) {
         MyList myList = new MyList(
+                mySongs.get(i),
                 mySongs.get(i).getName(),
                 getTimeSong(mySongs.get(i))
         );
         list.add(myList);
     }
 
-    adapter = new CustomAdapter(list, this);
+    adapter = new CustomAdapter(list, this,mediaPlayer);
             recyclerView.setAdapter(adapter);
     }
 
