@@ -5,9 +5,9 @@ public class MyList {
     private String time;
 
     //constructor initializing values
-    public MyList(String head, String desc) {
+    MyList(String head, String time) {
         this.head = head;
-        this.time = desc;
+        this.time = time;
     }
 
     //getters
@@ -15,7 +15,7 @@ public class MyList {
         return head;
     }
 
-    public String getDesc() {
+    public String getTime() {
         return time;
     }
 }

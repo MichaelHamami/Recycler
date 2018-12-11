@@ -13,13 +13,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     //recyclerview objects
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-
+    private String  rootis;
+    private ArrayList<File>   mySongs;
     //model object for our list data
     private List<MyList> list;
 
@@ -37,24 +39,11 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
 
         // get song files from Emulator
-        String  rootis = " "+Environment.getExternalStorageDirectory().getName();
-        ArrayList<File>   mySongs = findSongs(Environment.getExternalStorageDirectory());
+          rootis = " "+Environment.getExternalStorageDirectory().getName();
+          mySongs = findSongs(Environment.getExternalStorageDirectory());
 
         //loading list view item with this function
-//        loadRecyclerViewItem();
-//            you can fetch the data from server or some apis
-//            for this tutorial I am adding some dummy data directly
-            for (int i = 0; i < mySongs.size(); i++) {
-                MyList myList = new MyList(
-                        mySongs.get(i).getName(),
-                        getTimeSong(mySongs.get(i))
-                );
-                list.add(myList);
-            }
-
-            adapter = new CustomAdapter(list, this);
-            recyclerView.setAdapter(adapter);
-
+        loadRecyclerViewItem();
     }
 
 
@@ -74,20 +63,20 @@ public class MainActivity extends AppCompatActivity {
         return al;
     }
 
-//    private void loadRecyclerViewItem() {
-//        //you can fetch the data from server or some apis
-//        //for this tutorial I am adding some dummy data directly
-//        for (int i = 1; i < mySongs.size()-1; i++) {
-//            MyList myList = new MyList(
-//                    mySongs.get(i-1).getName(),
-//                    getTimeSong(mySongs.get(i-1))
-//            );
-//            list.add(myList);
-//        }
-//
-//        adapter = new CustomAdapter(list, this);
-//        recyclerView.setAdapter(adapter);
-//    }
+    private void loadRecyclerViewItem() {
+//            you can fetch the data from server or some apis
+//            for this tutorial I am adding some dummy data directly
+            for (int i = 0; i < mySongs.size(); i++) {
+        MyList myList = new MyList(
+                mySongs.get(i).getName(),
+                getTimeSong(mySongs.get(i))
+        );
+        list.add(myList);
+    }
+
+    adapter = new CustomAdapter(list, this);
+            recyclerView.setAdapter(adapter);
+    }
 
     public String getTimeSong(File file )
     {
@@ -117,4 +106,4 @@ public class MainActivity extends AppCompatActivity {
         return time;
     }
 
-    }
+}

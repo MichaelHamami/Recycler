@@ -3,15 +3,14 @@
 
     <item
         android:id="@+id/menu1"
-        android:title="Save" />
+        android:title="play" />
 
     <item
         android:id="@+id/menu2"
-        android:title="Menu 2" />
+        android:title="delete" />
 
     <item
         android:id="@+id/menu3"
-        android:title="Menu 3" />
-
+        android:title="add to playlist" />
 
 </menu>

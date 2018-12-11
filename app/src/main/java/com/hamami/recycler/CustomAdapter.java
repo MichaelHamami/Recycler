@@ -1,6 +1,7 @@
 package com.hamami.recycler;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,32 +12,29 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Belal on 29/09/16.
- */
-
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private List<MyList> list;
     private Context mCtx;
 
-    public CustomAdapter(List<MyList> list, Context mCtx) {
+    CustomAdapter(List<MyList> list, Context mCtx) {
         this.list = list;
         this.mCtx = mCtx;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_items, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final CustomAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CustomAdapter.ViewHolder holder, int position) {
         MyList myList = list.get(position);
         holder.textViewHead.setText(myList.getHead());
-        holder.textTimeSong.setText(myList.getDesc());
+        holder.textTimeSong.setText(myList.getTime());
 
         holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,18 +76,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textViewHead;
-        public TextView textTimeSong;
-        public TextView buttonViewOption;
+        private TextView textViewHead;
+        private TextView textTimeSong;
+        private TextView buttonViewOption;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
 
-            textViewHead = (TextView) itemView.findViewById(R.id.textViewHead);
-            textTimeSong = (TextView) itemView.findViewById(R.id.textTimeSong);
-            buttonViewOption = (TextView) itemView.findViewById(R.id.textViewOptions);
+            textViewHead =  itemView.findViewById(R.id.textViewHead);
+            textTimeSong =  itemView.findViewById(R.id.textTimeSong);
+            buttonViewOption = itemView.findViewById(R.id.textViewOptions);
         }
     }
 }
