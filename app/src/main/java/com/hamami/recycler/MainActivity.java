@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
+
+ //   private Button playPauseButton;
 
     //recyclerview objects
     private MediaPlayer mediaPlayer;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         //initializing views
+//        playPauseButton = findViewById(R.id.playPauseButton);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -107,5 +112,4 @@ public class MainActivity extends AppCompatActivity
         metaRetriever.release();
         return time;
     }
-
 }

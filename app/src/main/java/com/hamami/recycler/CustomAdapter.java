@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,7 @@ import java.io.File;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
-
+    Button playPauseButton;
     MediaPlayer mediaPlayer;
     private List<MyList> list;
     private Context mCtx;
@@ -27,6 +28,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         this.mediaPlayer = mediaPlayer;
         this.list = list;
         this.mCtx = mCtx;
+        Button playPauseButton;
     }
 
     @NonNull
@@ -42,6 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         final MyList myList = list.get(position);
         holder.textViewSongName.setText(myList.getNameSong());
         holder.textTimeSong.setText(myList.getSongLength());
+//        holder.playPauseButton.setText("hamami" );
         holder.linearLayoutOfRecycler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -83,6 +86,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
             }
         });
+
+//        holder.playPauseButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                {
+//                    Toast.makeText(mCtx, "We get to playpause", Toast.LENGTH_LONG).show();
+//
+//                }
+//            }
+//        });
     }
 
 
@@ -93,7 +107,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
         private TextView textViewSongName;
         private TextView textTimeSong;
         private TextView buttonViewOption;
@@ -101,7 +114,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         ViewHolder(View itemView) {
             super(itemView);
-
             textViewSongName =  itemView.findViewById(R.id.textViewSongName);
             textTimeSong =  itemView.findViewById(R.id.textTimeSong);
             buttonViewOption = itemView.findViewById(R.id.textViewOptions);
