@@ -9,19 +9,29 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="300dp">
 
 
     </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:text="Play"
-        android:id="@+id/playPauseButton"
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.hamami.recycler.MusicFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/recyclerView"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp" />
+
+    <!--<TextView-->
+        <!--android:text="Play"-->
+        <!--android:id="@+id/playPauseButton"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:textAppearanceLarge" />-->
 
 </RelativeLayout>
 
