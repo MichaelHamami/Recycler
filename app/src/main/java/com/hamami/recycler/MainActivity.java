@@ -3,6 +3,7 @@ package com.hamami.recycler;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Environment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,8 +20,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
 {
 
- //   private Button playPauseButton;
-
     //recyclerview objects
     private MediaPlayer mediaPlayer;
     private RecyclerView recyclerView;
@@ -28,6 +27,11 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.Adapter adapter;
     private String  rootis;
     private ArrayList<File>   mySongs;
+    private MusicFragment musicFragment;
+
+    private Button unShowButton;
+    private Button showButton;
+
     //model object for our list data
     private List<MyList> list;
 
@@ -37,7 +41,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         //initializing views
-//        playPauseButton = findViewById(R.id.playPauseButton);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -50,6 +53,37 @@ public class MainActivity extends AppCompatActivity
 
         //loading list view item with this function
         loadRecyclerViewItem();
+
+        //Button
+        unShowButton = (Button) findViewById(R.id.unShowButton);
+        showButton = (Button) findViewById(R.id.showButton);
+        // fragment
+       musicFragment = new MusicFragment();
+
+     //    Begin the transaction
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+// Replace the contents of the container with the new fragment
+        ft.replace(R.id.fragmentContainer, musicFragment);
+// or ft.add(R.id.your_placeholder, new FooFragment());
+// Complete the changes added above
+        ft.commit();
+
+
+
+        //Check if its work
+        unShowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unShownFragment();
+            }
+        });
+        showButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment();
+            }
+        });
+
     }
 
 
@@ -111,5 +145,17 @@ public class MainActivity extends AppCompatActivity
         // close object
         metaRetriever.release();
         return time;
+    }
+    public void unShownFragment()
+    {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.hide(musicFragment);
+        ft.commit();
+    }
+    public void showFragment()
+    {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.show(musicFragment);
+        ft.commit();
     }
 }

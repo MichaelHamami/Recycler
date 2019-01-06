@@ -19,7 +19,6 @@ import java.io.File;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
-    Button playPauseButton;
     MediaPlayer mediaPlayer;
     private List<MyList> list;
     private Context mCtx;
@@ -28,7 +27,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         this.mediaPlayer = mediaPlayer;
         this.list = list;
         this.mCtx = mCtx;
-        Button playPauseButton;
     }
 
     @NonNull
@@ -44,7 +42,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         final MyList myList = list.get(position);
         holder.textViewSongName.setText(myList.getNameSong());
         holder.textTimeSong.setText(myList.getSongLength());
-//        holder.playPauseButton.setText("hamami" );
         holder.linearLayoutOfRecycler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -86,17 +83,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
             }
         });
-
-//        holder.playPauseButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                {
-//                    Toast.makeText(mCtx, "We get to playpause", Toast.LENGTH_LONG).show();
-//
-//                }
-//            }
-//        });
     }
 
 
