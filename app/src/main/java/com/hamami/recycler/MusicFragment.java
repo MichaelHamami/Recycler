@@ -10,6 +10,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class MusicFragment extends Fragment {
+
+
+    private OnItemSelectedListener listener;
+
+    // Define the events that the fragment will use to communicate
+    public interface OnItemSelectedListener {
+        // This can be any number of events to be sent to the activity
+        public void onRssItemSelected(String link);
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
