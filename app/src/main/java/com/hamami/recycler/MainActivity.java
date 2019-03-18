@@ -34,6 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import static com.hamami.recycler.util.Constants.MEDIA_QUEUE_POSITION;
 import static com.hamami.recycler.util.Constants.QUEUE_NEW_PLAYLIST;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
 
     // layout
     private TabLayout mTabLayout;
-    private Toolbar mToolbar;
+    private ViewPager mViewPager;
+    private ViewPagerAdapter adapter;
 
     ArrayList<Song> songList = new ArrayList<>();
     ArrayList<File> mySongs = new ArrayList<>();
@@ -77,10 +79,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.main_layout);
         mTabLayout =  findViewById(R.id.tabLayout);
-        mToolbar = findViewById(R.id.commToolbar);
+        mViewPager = findViewById(R.id.main_container);
 
-        mTabLayout.addTab(mTabLayout.newTab().setText("first"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("second"));
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+//        mTabLayout.addTab(mTabLayout.newTab().setText("first"));
+//        mTabLayout.addTab(mTabLayout.newTab().setText("second"));
 
         showReadPreview();
 
@@ -105,9 +109,34 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
 
 
 
-        activePlaylistFragment();
-//        Toast.makeText(this,"onCreateFine",Toast.LENGTH_LONG).show();
+//        activePlaylistFragment();
+        setupViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
 
+        ArrayList<Song> songList2 = new ArrayList<>();
+
+        for (int i = 0; i < mySongs.size()-1; i++) {
+            Song song = new Song(
+                    mySongs.get(i),
+                    mySongs.get(i).getName().replace(".mp3",""),
+                    getTimeSong(mySongs.get(i))
+            );
+            songList2.add(song);
+        }
+
+        adapter.addFragment(PlaylistFragment.newInstance(songList2),"2 songs");
+        adapter.notifyDataSetChanged();
+
+    }
+
+    private void setupViewPager(ViewPager mViewPager) {
+        adapter.addFragment(PlaylistFragment.newInstance(songList),"AllMusic");
+        mViewPager.setAdapter(adapter);
+    }
+    private void activePlaylistFragment()
+    {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_container, PlaylistFragment.newInstance(songList)).commit();
     }
 
     @Override
@@ -343,11 +372,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
         mMediaBrowserHelper.onStop();
     }
 
-    private void activePlaylistFragment()
-    {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, PlaylistFragment.newInstance(songList)).commit();
-    }
 
 
 
