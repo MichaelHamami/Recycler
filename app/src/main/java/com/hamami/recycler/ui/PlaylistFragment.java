@@ -166,6 +166,7 @@ public class PlaylistFragment extends Fragment implements PlaylistRecyclerAdapte
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu1:
+                        //asdasdsads
                         Toast.makeText(getContext(), "play menu clicked", Toast.LENGTH_SHORT).show();
                         onMediaSelected(postion);
                         return true;
