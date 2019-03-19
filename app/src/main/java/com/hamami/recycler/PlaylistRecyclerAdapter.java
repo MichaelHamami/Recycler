@@ -45,11 +45,8 @@ public class PlaylistRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
-//        ((ViewHolder)viewHolder).songName.setText(songsList.get(i).getNameSong());
-//         ((ViewHolder)viewHolder).songTime.setText(songsList.get(i).getSongLength());
-
         ((ViewHolder)viewHolder).songName.setText(mMediaList.get(i).getDescription().getTitle());
-        ((ViewHolder)viewHolder).songTime.setText(mMediaList.get(i).getDescription().getSubtitle());
+        ((ViewHolder)viewHolder).songTime.setText(songsList.get(i).getSongLength());
 
         if(i == mSelectedIndex){
             ((ViewHolder)viewHolder).songName.setTextColor(ContextCompat.getColor(mContext, R.color.green));
@@ -84,7 +81,7 @@ public class PlaylistRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        // title = songName , artist=songTime
+        // title = songName , songTime
         private TextView songName, songTime;
         private TextView songOptions;
         private IMediaSelector iMediaSelector;
@@ -97,16 +94,25 @@ public class PlaylistRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             this.iMediaSelector = iMediaSelector;
 
             itemView.setOnClickListener(this);
+            songOptions.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            iMediaSelector.onMediaSelected(getAdapterPosition());
+            if(view.getId() == R.id.song_option)
+            {
+                iMediaSelector.onSongOptionSelected(getAdapterPosition(),view);
+            }
+            else
+            {
+                iMediaSelector.onMediaSelected(getAdapterPosition());
+            }
         }
     }
 
     public interface IMediaSelector{
         void onMediaSelected(int position);
+        void onSongOptionSelected(int position,View view);
     }
 
 }

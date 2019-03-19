@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-//        mTabLayout.addTab(mTabLayout.newTab().setText("first"));
-//        mTabLayout.addTab(mTabLayout.newTab().setText("second"));
-
         showReadPreview();
 
 //        songList = retriveSongs();
@@ -124,19 +121,19 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
             songList2.add(song);
         }
 
-        adapter.addFragment(PlaylistFragment.newInstance(songList2),"2 songs");
+        adapter.addFragment(PlaylistFragment.newInstance(songList2,"2Songs"),"2 songs");
         adapter.notifyDataSetChanged();
 
     }
 
     private void setupViewPager(ViewPager mViewPager) {
-        adapter.addFragment(PlaylistFragment.newInstance(songList),"AllMusic");
+        adapter.addFragment(PlaylistFragment.newInstance(songList,"AllMusic"),"AllMusic");
         mViewPager.setAdapter(adapter);
     }
     private void activePlaylistFragment()
     {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, PlaylistFragment.newInstance(songList)).commit();
+                .replace(R.id.main_container, PlaylistFragment.newInstance(songList,"AllMusic")).commit();
     }
 
     @Override
@@ -419,6 +416,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity, Ac
                 metaRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
 
         long dur = Long.parseLong(duration);
+        // convert duration to minute:seconds
         String seconds = String.valueOf((dur % 60000) / 1000);
 
         String minutes = String.valueOf(dur / 60000);
